@@ -1,0 +1,15 @@
+
+version: '3'
+services:
+  microservice:
+    image: 'img_app1'
+    expose:
+      - "8080"
+  loadbalancer:
+    image: 'dockercloud/haproxy:latest'
+    links:
+      - microservice
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - '80:80'

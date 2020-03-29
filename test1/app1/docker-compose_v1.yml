@@ -1,0 +1,16 @@
+
+microservice1:
+  image: 'img_app1'
+  expose:
+    - "8080"
+microservice2:
+  image: 'img_app1'
+  expose:
+     - "8080"
+loadbalancer:
+  image: 'dockercloud/haproxy:latest'
+  links:
+    - microservice1
+    - microservice2
+  ports:
+    - '80:80'
