@@ -1,0 +1,19 @@
+spring:
+  rabbitmq:
+    host: 172.20.0.2
+    port: 5672
+    username : guest
+    password : guest
+
+ztt:
+  rabbitmq:
+    exchange: ztt.exchange
+    queue: ztt.queue
+    routingkey : ztt.routingkey
+
+extractor:
+  scheduled:
+    time : 60000
+  cameras:
+    url: http://www.mc30.es/components/com_hotspots/datos/camaras.xml
+
