@@ -6,6 +6,8 @@ spring:
     password : guest
 
 ztt:
+  cameras:
+    path: /home/vtcmer/ztt/dev/docker/docker-basic/test3/open-data/cameras/
   rabbitmq:
-    queue: ztt.queue
+    queue: ztt.queue.app.image
 

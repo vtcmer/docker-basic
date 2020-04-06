@@ -13,19 +13,19 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 @Configuration
 public class RabbitMQConfig {
 
-    @Value("${ztt.rabbitmq.queue}")
-    String queueName;
+
 
     @Value("${ztt.rabbitmq.exchange}")
     String exchange;
 
     @Value("${ztt.rabbitmq.routingkey}")
-    private String routingkey;
+    String routingkey;
 
-    @Bean
-    Queue queue() {
-        return new Queue(queueName, true);
-    }
+    @Value("${ztt.rabbitmq.app-db.queue}")
+    String queueNameAppDb;
+
+    @Value("${ztt.rabbitmq.app-image.queue}")
+    String queueNameAppImage;
 
     @Bean
     DirectExchange exchange() {
@@ -33,9 +33,25 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    Binding binding(Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(routingkey);
+    Queue queueAppDb() {
+        return new Queue(queueNameAppDb, true);
     }
+
+    @Bean
+    Queue queueAppImage() {
+        return new Queue(queueNameAppImage, true);
+    }
+
+    @Bean
+    Binding bindingAppDb(Queue queueAppDb, DirectExchange exchange) {
+        return BindingBuilder.bind(queueAppDb).to(exchange).with(routingkey);
+    }
+
+    @Bean
+    Binding bindingAppImage(Queue queueAppImage, DirectExchange exchange) {
+        return BindingBuilder.bind(queueAppImage).to(exchange).with(routingkey);
+    }
+
 
 
     /*

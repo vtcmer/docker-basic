@@ -10,6 +10,7 @@ public class Photo implements Serializable {
     BigDecimal latitude;
     BigDecimal longitude;
     Date date;
+    String url;
 
     public Photo(){}
 
@@ -39,13 +40,19 @@ public class Photo implements Serializable {
         this.longitude = longitude;
     }
 
-
-
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

@@ -4,7 +4,16 @@ spring:
     port: 5672
     username : guest
     password : guest
+  data:
+    mongodb:
+      host: 172.20.0.3
+      #authentication-database: admin
+      database: camera
+      #username: root
+      #password: 123456
 
 ztt:
+  cameras:
+    path: /home/vtcmer/ztt/dev/docker/docker-basic/test3/open-data/cameras/
   rabbitmq:
-    queue: ztt.queue
+    queue: ztt.queue.app.db

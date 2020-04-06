@@ -8,8 +8,11 @@ spring:
 ztt:
   rabbitmq:
     exchange: ztt.exchange
-    queue: ztt.queue
-    routingkey : ztt.routingkey
+    routingkey: ztt.routingkey
+    app-db:
+      queue: ztt.queue.app.db
+    app-image:
+      queue: ztt.queue.app.image
 
 extractor:
   scheduled:
