@@ -11,6 +11,7 @@ spring:
       database: camera
       #username: root
       #password: 123456
+      auto-index-creation: false
 
 ztt:
   cameras:
