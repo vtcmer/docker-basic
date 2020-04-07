@@ -1,6 +1,7 @@
 version: '3'
 services:
   rabbit-od:
+    container_name: open-data-rabbitmq
     image: "rabbitmq:3-management"
     hostname: "open-data-rabbitmq"
     networks:
@@ -31,7 +32,6 @@ services:
   service-image:
     container_name: open-data-image
     image: img_open_data_image
-    hostname: "open-data-image"
     networks:
       open-data:
         aliases:
