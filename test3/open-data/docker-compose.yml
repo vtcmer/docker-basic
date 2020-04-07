@@ -13,6 +13,29 @@ services:
       - "5672:5672"
     labels:
       NAME: "rabbitmq-od"
+  service-extractor:
+    container_name: open-data-extractor
+    image: img_open_data_extractor
+    build: ./open-data-extractor
+    depends_on:
+      - rabbit-od
+  service-image:
+    container_name: open-data-image
+    image: img_open_data_image
+    build: ./app-image
+    volumes:
+      - ./cameras:/opt/app/data/cameras/
+    depends_on:
+      - rabbit-od
+  service-db:
+    container_name: open-data-db
+    image: img_open_data_db
+    build: ./app-db
+    volumes:
+      - ./cameras:/opt/app/data/cameras/
+    depends_on:
+      - mongo_container
+      - rabbit-od
   mongo_container:
     image: mongo:latest
    # environment:
@@ -24,3 +47,4 @@ services:
       - mongodb_data_container:/data/db
 volumes:
   mongodb_data_container:
+

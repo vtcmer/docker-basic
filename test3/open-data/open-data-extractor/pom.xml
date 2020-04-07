@@ -47,6 +47,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>open-data-extractor</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

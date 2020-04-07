@@ -7,7 +7,8 @@ spring:
 
 ztt:
   cameras:
-    path: /home/vtcmer/ztt/dev/docker/docker-basic/test3/open-data/cameras/
+    path: /opt/app/data/cameras/
+    #path: /home/vtcmer/ztt/dev/docker/docker-basic/test3/open-data/cameras/
   rabbitmq:
     queue: ztt.queue.app.image
 

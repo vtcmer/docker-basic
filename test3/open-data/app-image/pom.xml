@@ -47,6 +47,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>open-data-image</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
