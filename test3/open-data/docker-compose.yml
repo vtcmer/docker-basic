@@ -2,7 +2,11 @@ version: '3'
 services:
   rabbit-od:
     image: "rabbitmq:3-management"
-    # hostname: "rabbitvm1"
+    hostname: "open-data-rabbitmq"
+    networks:
+      open-data:
+        aliases:
+          - open-data-rabbitmq
     environment:
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
       RABBITMQ_DEFAULT_USER: "guest"
@@ -16,12 +20,22 @@ services:
   service-extractor:
     container_name: open-data-extractor
     image: img_open_data_extractor
+    hostname: "open-data-extractor"
+    networks:
+      open-data:
+        aliases:
+          - open-data-extractor
     build: ./open-data-extractor
     depends_on:
       - rabbit-od
   service-image:
     container_name: open-data-image
     image: img_open_data_image
+    hostname: "open-data-image"
+    networks:
+      open-data:
+        aliases:
+          - open-data-image
     build: ./app-image
     volumes:
       - ./cameras:/opt/app/data/cameras/
@@ -30,6 +44,11 @@ services:
   service-db:
     container_name: open-data-db
     image: img_open_data_db
+    hostname: "open-data-db"
+    networks:
+      open-data:
+        aliases:
+          - open-data-db
     build: ./app-db
     volumes:
       - ./cameras:/opt/app/data/cameras/
@@ -38,6 +57,11 @@ services:
       - rabbit-od
   mongo_container:
     image: mongo:latest
+    hostname: "open-data-mongo"
+    networks:
+      open-data:
+        aliases:
+          - open-data-mongo
    # environment:
     #  MONGO_INITDB_ROOT_USERNAME: root
     #  MONGO_INITDB_ROOT_PASSWORD: 123456
@@ -47,4 +71,7 @@ services:
       - mongodb_data_container:/data/db
 volumes:
   mongodb_data_container:
+
+networks:
+  open-data:
 

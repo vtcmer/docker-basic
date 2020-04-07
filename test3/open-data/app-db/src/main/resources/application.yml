@@ -1,12 +1,12 @@
 spring:
   rabbitmq:
-    host: 172.20.0.2
+    host: open-data-rabbitmq
     port: 5672
     username : guest
     password : guest
   data:
     mongodb:
-      host: 172.20.0.3
+      host: open-data-mongo
       #authentication-database: admin
       database: camera
       #username: root
