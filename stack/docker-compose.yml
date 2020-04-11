@@ -1,0 +1,53 @@
+version: '3'
+services:
+  mysql-db:
+    container_name: mysql-stack-container
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_USER: 'user1'
+      MYSQL_PASSWORD: '123456'
+      MYSQL_ROOT_PASSWORD: '123456'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - mysql-stack:/var/lib/mysql
+
+  postgres-db:
+    container_name: postgres-stack-container
+    hostname: 'postgres-stack'
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-stack-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=123456
+      #- POSTGRES_DB=app-db
+
+  rabbit-stack:
+    container_name: rabbitmq-stack-container
+    hostname: 'rabbitmq-stack'
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - rabbitmq-stack-data:/var/lib/rabbitmq/
+
+volumes:
+  mysql-stack:
+  rabbitmq-stack-data:
+  postgres-stack-data:
+
+
+
